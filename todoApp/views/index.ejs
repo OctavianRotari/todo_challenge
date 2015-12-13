@@ -11,6 +11,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-resource.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>
 
     <script type="text/ng-template" id="/todos.html">
@@ -21,6 +22,7 @@
           <a href="#/{{$index}}">{{todo.name}}</a>
         </li>
       </ul>
+      New Task: <input type="text" ng-model="newTodo"><button ng-click="save()">Save</button>
     </script>
 
     <script type="text/ng-template" id="/todoDetails.html">
@@ -30,24 +32,32 @@
     </script>
 
     <script>
-      angular.module('app', ['ngRoute'])
+      angular.module('app', ['ngRoute', 'ngResource'])
 
 
-      .factory('Todos',['$http', function($http){
-        return $http.get('/todos');
-      }])
-
-      .controller('TodoController', ['$scope', 'Todos', function ($scope, Todos) {
-        Todos.success(function(data){
-          $scope.todos = data;
-        }).error(function(data, status){
-          console.log(data, status);
-          $scope.todos = [];
+      .factory('Todos',['$resource', function($resource){
+        return $resource('/todos/:id', null,{
+          'update': {method:'PUT'}
         });
       }])
 
+      .controller('TodoController', ['$scope', 'Todos', function ($scope, Todos) {
+          $scope.todos = Todos.query();
+
+          $scope.save = function(){
+            if(!$scope.newTodo || $scope.newTodo.length < 1) return;
+            var todo = new Todos({name:$scope.newTodo, completed:false});
+
+            todo.$save(function(){
+              $scope.todos.push(todo);
+              $scope.newTodo = '';
+            });
+          };
+      }])
+
         .controller('TodoDetailCtrl', ['$scope', '$routeParams', 'Todos', function ($scope, $routeParams, Todos) {
-          $scope.todo = Todos[$routeParams.id];
+          $scope.todos = Todos[$routeParams.id];
+
         }])
 
 
