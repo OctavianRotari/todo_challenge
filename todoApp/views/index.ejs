@@ -18,8 +18,12 @@
       Search: <input type="text" ng-model="search.name">
       <ul>
         <li ng-repeat="todo in todos | filter: search">
-          <input type="checkbox" ng-model="todo.completed">
-          <a href="#/{{$index}}">{{todo.name}}</a>
+          <input type="checkbox" ng-model="todo.completed" ng-change="update($index)">
+          <a href="#/{{todo._id}}" ng-show="!editing[$index]">{{todo.name}}</a>
+          <button ng-show="!editing[$index]" ng-click="edit($index)">Edit</button>
+          <input type="text" ng-show="editing[$index]" ng-model="todo.name">
+          <button ng-show="editing[$index]" ng-click="update($index)">Update</button>
+          <button ng-show="editing[$index]" ng-click="cancel($index)">Cancel</button>
         </li>
       </ul>
       New Task: <input type="text" ng-model="newTodo"><button ng-click="save()">Save</button>
@@ -28,7 +32,7 @@
     <script type="text/ng-template" id="/todoDetails.html">
       <h1>{{ todo.name }}</h1>
       completed: <input type="checkbox" ng-model="todo.completed">
-      note: <textarea>{{ todo.note }}</textarea>
+      note: <p>{{ todo.note }}</p>
     </script>
 
     <script>
@@ -42,6 +46,7 @@
       }])
 
       .controller('TodoController', ['$scope', 'Todos', function ($scope, Todos) {
+          $scope.editing = [];
           $scope.todos = Todos.query();
 
           $scope.save = function(){
@@ -53,11 +58,26 @@
               $scope.newTodo = '';
             });
           };
+
+          $scope.edit = function(index){
+            $scope.editing[index] = angular.copy($scope.todos[index]);
+          };
+
+          $scope.update = function(index){
+            var todo = $scope.todos[index];
+            Todos.update({id: todo._id}, todo);
+            $scope.editing[index] = false;
+          };
+
+          $scope.cancel = function(index){
+            $scope.todos[index] = angular.copy($scope.editing[index]);
+            console.log($scope.editing[index])
+            $scope.editing[index] = false;
+          };
       }])
 
         .controller('TodoDetailCtrl', ['$scope', '$routeParams', 'Todos', function ($scope, $routeParams, Todos) {
-          $scope.todos = Todos[$routeParams.id];
-
+          $scope.todo = Todos.get({id: $routeParams.id});
         }])
 
 
