@@ -26,7 +26,9 @@
           <button ng-show="editing[$index]" ng-click="cancel($index)">Cancel</button>
         </li>
       </ul>
-      New Task: <input type="text" ng-model="newTodo"><button ng-click="save()">Save</button>
+      New Task: <input type="text" ng-model="newTodo.todo"><br/>
+      Note:     <input type="text" ng-model="newTodo.note"><br/>
+      <button ng-click="save()">Save</button>
     </script>
 
     <script type="text/ng-template" id="/todoDetails.html">
@@ -46,16 +48,17 @@
       }])
 
       .controller('TodoController', ['$scope', 'Todos', function ($scope, Todos) {
+          $scope.newTodo = {todo: null, note: null};
           $scope.editing = [];
           $scope.todos = Todos.query();
 
           $scope.save = function(){
             if(!$scope.newTodo || $scope.newTodo.length < 1) return;
-            var todo = new Todos({name:$scope.newTodo, completed:false});
+            var todo = new Todos({name:$scope.newTodo.todo, completed:false, note:$scope.newTodo.note});
 
             todo.$save(function(){
               $scope.todos.push(todo);
-              $scope.newTodo = '';
+              $scope.newTodo = {todo: null, note: null};
             });
           };
 
