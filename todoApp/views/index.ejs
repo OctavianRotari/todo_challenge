@@ -26,9 +26,12 @@
           <button ng-show="editing[$index]" ng-click="cancel($index)">Cancel</button>
         </li>
       </ul>
-      New Task: <input type="text" ng-model="newTodo.todo"><br/>
-      Note:     <input type="text" ng-model="newTodo.note"><br/>
-      <button ng-click="save()">Save</button>
+      <button ng-click="showme=true">Add a new one</button>
+      <div ng-show="showme">
+        New Task: <input type="text" ng-model="newTodo.todo"><br/>
+        Note:     <input type="text" ng-model="newTodo.note"><br/>
+        <button ng-click="save(); showme=false">Save</button>
+      </div>
     </script>
 
     <script type="text/ng-template" id="/todoDetails.html">
