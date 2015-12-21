@@ -20,6 +20,7 @@
         <li ng-repeat="todo in todos | filter: search">
           <input type="checkbox" ng-model="todo.completed" ng-change="update($index)">
           <a href="#/{{todo._id}}" ng-show="!editing[$index]">{{todo.name}}</a>
+          <button ng-show="!editing[$index]" ng-click="delete($index)">Delete</button>
           <button ng-show="!editing[$index]" ng-click="edit($index)">Edit</button>
           <input type="text" ng-show="editing[$index]" ng-model="todo.name">
           <button ng-show="editing[$index]" ng-click="update($index)">Update</button>
@@ -80,6 +81,13 @@
             console.log($scope.editing[index])
             $scope.editing[index] = false;
           };
+
+          $scope.delete = function(index){
+            console.log($scope.todos[index]);
+            var todo = $scope.todos[index];
+            Todos.remove({id: todo._id}, todo),
+            $scope.todos.splice(index,1);
+          }
       }])
 
         .controller('TodoDetailCtrl', ['$scope', '$routeParams', 'Todos', function ($scope, $routeParams, Todos) {
