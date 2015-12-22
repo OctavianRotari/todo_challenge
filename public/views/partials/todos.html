@@ -1,6 +1,8 @@
-Search: <input type="text" ng-model="search.name">
+<button ng-click="myFilter = {completed:false}">Not completed </button>
+<button ng-click="myFilter = {completed:true}">Completed </button>
+<button ng-click="myFilter = {}">All</button>
 <ul>
-  <li ng-repeat="todo in todos | filter: search">
+  <li ng-repeat="todo in todos | filter: myFilter">
     <input type="checkbox" ng-model="todo.completed" ng-change="update($index)">
     <a href="#/{{todo._id}}" ng-show="!editing[$index]">{{todo.name}}</a>
     <button ng-show="!editing[$index]" ng-click="delete($index)">Delete</button>
