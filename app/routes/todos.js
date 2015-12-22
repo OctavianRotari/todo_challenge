@@ -12,7 +12,6 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   Todo.create(req.body, function (err, post) {
     if (err) return next(err);
-    console.log("this is a post method on the server side")
     res.json(post);
   });
 });
@@ -33,7 +32,6 @@ router.put('/:id', function(req, res, next){
 
 router.delete('/:id', function(req, res, next){
   Todo.findByIdAndRemove(req.params.id, req.body, function(err, post){
-    console.log("this is the delete method with the id")
     if(err) next(err);
     res.json(post);
   });

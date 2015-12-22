@@ -6,7 +6,6 @@ app.controller('TodoController', ['$scope', 'Todos', function ($scope, Todos) {
   $scope.save = function(){
     if(!$scope.newTodo || $scope.newTodo.length < 1) return;
     var todo = new Todos({name:$scope.newTodo.todo, completed:false, note:$scope.newTodo.note});
-
     todo.$save(function(){
       $scope.todos.push(todo);
       $scope.newTodo = {todo: null, note: null};
