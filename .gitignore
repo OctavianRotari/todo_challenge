@@ -1,4 +1,4 @@
 todoApp/node_modules/*
-todoApp/bower_components/*
+libs/bower_components/*
 todoAngular/bower_components/*
 todoAngular/node_modules/*
