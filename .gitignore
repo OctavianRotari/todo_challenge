@@ -1,4 +1,2 @@
-todoApp/node_modules/*
-libs/bower_components/*
-todoAngular/bower_components/*
-todoAngular/node_modules/*
+node_modules/*
+libs/*
