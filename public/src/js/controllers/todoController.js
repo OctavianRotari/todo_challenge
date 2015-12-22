@@ -29,8 +29,8 @@ app.controller('TodoController', ['$scope', 'Todos', function ($scope, Todos) {
 
   $scope.delete = function(index){
     var todo = $scope.todos[index];
-    Todos.remove({id: todo._id}, todo),
+    Todos.remove({id: todo._id}, todo);
     $scope.todos.splice(index,1);
-  }
-}])
+  };
+}]);
 
