@@ -14,7 +14,7 @@
   <div class="row" ng-repeat="todo in todos | filter: myFilter">
     <div class="col-md-4">
       <input type="checkbox" ng-model="todo.completed" ng-change="update($index)" ng-show="!editing[$index]">
-      <a href="#/{{todo._id}}" ng-show="!editing[$index]">{{todo.name}}</a>
+      <a href="" ng-show="!editing[$index]">{{todo.name}}</a>
     </div>
     <div>
       <div class="col-md-1" style="padding:0px">
