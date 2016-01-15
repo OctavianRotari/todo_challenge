@@ -1,12 +1,12 @@
 <div class="row">
-  <div class=" btn-group btn-group-sm btn-info " role="group">
-    <button class="btn btn-info" ng-click="myFilter = {completed:false}">Not completed </button>
-    <button class="btn btn-info" ng-click="myFilter = {completed:true}">Completed </button>
-    <button class="btn btn-info" ng-click="myFilter = {}">All</button>
+  <div class=" btn-group btn-group-sm btn-info " style="width: 100%;" role="group">
+    <button class="btn btn-info" style="width: 33.33%;" ng-click="myFilter = {completed:false}">Not completed </button>
+    <button class="btn btn-info" style="width: 33.33%;" ng-click="myFilter = {completed:true}">Completed </button>
+    <button class="btn btn-info" style="width: 33.33%;" ng-click="myFilter = {}">All</button>
   </div>
   <ul>
     <li ng-repeat="todo in todos | filter: myFilter">
-      <div class"col-lg-10">
+      <div class="col-lg-10">
         <input type="checkbox" ng-model="todo.completed" ng-change="update($index)">
         <a href="#/{{todo._id}}" ng-show="!editing[$index]">{{todo.name}}</a>
       </div>
@@ -22,12 +22,21 @@
     </li>
   </ul>
   <button class="btn btn-info btn-sm" ng-click="showme=true">Add a new one</button>
+  <br/>
   <div ng-show="showme">
-    New Task: <input type="text" ng-model="newTodo.todo"><br/>
-    Note:     <input type="text" ng-model="newTodo.note"><br/>
-    <div class="btn-group btn-group-sm btn-info" role="group">
-      <button class="btn btn-success" ng-click="save(); showme=false">Save</button>
-      <button class="btn btn-danger" ng-click="showme=false">Cancel</button>
-    </div>
+    <form>
+      <div class="form-group">
+        <label for="newTask">New Task:</label>
+        <input type="text" class="form-control" ng-model="newTodo.todo">
+      </div>
+      <div class="form-group">
+        <label>Note:</label>
+        <input type="text" class="form-control" ng-model="newTodo.note">
+      </div>
+      <div class="btn-group btn-group-sm btn-info" role="group">
+        <button class="btn btn-success" ng-click="save(); showme=false">Save</button>
+        <button class="btn btn-danger" ng-click="showme=false">Cancel</button>
+      </div>
+    </form>
   </div>
 </div>
