@@ -1,26 +1,37 @@
-<div class="row">
-  <div class=" btn-group btn-group-sm btn-info " style="width: 100%;" role="group">
-    <button class="btn btn-info" style="width: 33.33%;" ng-click="myFilter = {completed:false}">Not completed </button>
-    <button class="btn btn-info" style="width: 33.33%;" ng-click="myFilter = {completed:true}">Completed </button>
-    <button class="btn btn-info" style="width: 33.33%;" ng-click="myFilter = {}">All</button>
+<div>
+  <div class="row">
+    <div class="col-md-4">
+      <button class="btn btn-block btn-info"  ng-click="myFilter = {completed:false}">Not completed </button>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-block btn-info"  ng-click="myFilter = {completed:true}">Completed </button>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-block btn-info"  ng-click="myFilter = {}">All</button>
+    </div>
   </div>
-  <ul>
-    <li ng-repeat="todo in todos | filter: myFilter">
-      <div class="col-lg-10">
-        <input type="checkbox" ng-model="todo.completed" ng-change="update($index)">
-        <a href="#/{{todo._id}}" ng-show="!editing[$index]">{{todo.name}}</a>
+  </br>
+  <div class="row" ng-repeat="todo in todos | filter: myFilter">
+    <div class="col-md-4">
+      <input type="checkbox" ng-model="todo.completed" ng-change="update($index)">
+      <a href="#/{{todo._id}}" ng-show="!editing[$index]">{{todo.name}}</a>
+    </div>
+    <div>
+      <div class="col-md-1" style="padding:0px">
+        <button class="btn btn-block btn-danger btn-sm" style="padding:0px" ng-show="!editing[$index]" ng-click="delete($index)">Delete</button>
       </div>
-      <div class="btn-group btn-group-xs btn-info" role="group">
-        <button class="btn btn-danger" ng-show="!editing[$index]" ng-click="delete($index)">Delete</button>
-        <button class="btn btn-info" ng-show="!editing[$index]" ng-click="edit($index)">Edit</button>
+      <div class="col-md-1" style="padding:0px">
+        <button class="btn btn-block btn-info btn-sm" style="padding:0px" ng-show="!editing[$index]" ng-click="edit($index)">Edit</button>
       </div>
-      <input type="text" ng-show="editing[$index]" ng-model="todo.name">
-      <div class="btn-group btn-group-xs btn-info" role="group">
-        <button class="btn btn-info" ng-show="editing[$index]" ng-click="update($index)">Update</button>
-        <button class="btn btn-danger" ng-show="editing[$index]" ng-click="cancel($index)">Cancel</button>
-      </div>
-    </li>
-  </ul>
+    </div>
+    </br>
+    <input type="text" ng-show="editing[$index]" ng-model="todo.name">
+    <div class="btn-group btn-group-xs btn-info" role="group">
+      <button class="btn btn-info" ng-show="editing[$index]" ng-click="update($index)">Update</button>
+      <button class="btn btn-danger" ng-show="editing[$index]" ng-click="cancel($index)">Cancel</button>
+    </div>
+  </div>
+  </br>
   <button class="btn btn-info btn-sm" ng-click="showme=true">Add a new one</button>
   <br/>
   <div ng-show="showme">
