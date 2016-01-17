@@ -15,6 +15,7 @@
     <div class="col-md-4">
       <input type="checkbox" ng-model="todo.completed" ng-change="update($index)" ng-show="!editing[$index]">
       <a href="" ng-show="!editing[$index]">{{todo.name}}</a>
+      <p ng-show="!editing[$index]">{{todo.note}}</p>
     </div>
     <div>
       <div class="col-md-1" style="padding:0px">
@@ -28,6 +29,7 @@
     <form class="col-md-6">
       <div class="form-group">
         <input type="text" class="form-control" ng-show="editing[$index]" ng-model="todo.name">
+        <input type="text" class="form-control" ng-show="editing[$index]" ng-model="todo.note">
       </div>
     </form>
     <div class="row">
