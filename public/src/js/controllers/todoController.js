@@ -1,15 +1,19 @@
-app.controller('TodoController', ['$scope', 'Todos', function ($scope, Todos) {
+app.controller('TodoController', ['$scope', 'Todos', '$location', function ($scope, Todos, $location) {
   $scope.newTodo = {todo: null, note: null};
   $scope.editing = [];
   $scope.todos = Todos.query();
 
   $scope.save = function(){
-    if(!$scope.newTodo || $scope.newTodo.length < 1) return;
+    if(!$scope.newTodo.name || $scope.newTodo.name.length < 1){
+      console.log('Fill in with todo');
+      return;
+    } else {;
     var todo = new Todos({name:$scope.newTodo.todo, completed:false, note:$scope.newTodo.note});
     todo.$save(function(){
       $scope.todos.push(todo);
       $scope.newTodo = {todo: null, note: null};
     });
+    };
   };
 
   $scope.edit = function(index){
