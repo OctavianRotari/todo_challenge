@@ -2,7 +2,7 @@
 
 This challenge was the number 7 on the list of weekend challenges of Makers Academy. The task was to build a simple ToDo app using AngularJs, because during the week we learnt how to use Angular for developing the front-end. I opted to go further and to implement it by adding the back-end using the other components of the MEAN stack, and also I used Grunt to automate the tasks, the challenge was build with a TDD approach but as I was going further I needed first to understand the new technology so I decided to develop it and play with the new technologies and then test it ( in progress ).
 
-![screenshot](http://i.imgur.com/A5KDeBP.png)
+![screenshot](http://i.imgur.com/a4whUWH.png)
 ![screenshot](http://i.imgur.com/fGFK1MF.png)
 
 ##Setup 
