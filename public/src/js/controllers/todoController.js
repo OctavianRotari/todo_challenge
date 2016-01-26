@@ -4,7 +4,7 @@ app.controller('TodoController', ['$scope', 'Todos', '$location', function ($sco
   $scope.todos = Todos.query();
 
   $scope.save = function(){
-    if(!$scope.newTodo.name || $scope.newTodo.name.length < 1){
+    if(!$scope.newTodo.todo || $scope.newTodo.todo.length < 1){
       console.log('Fill in with todo');
       return;
     } else {;
