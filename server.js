@@ -20,7 +20,7 @@ bowerDirectory(function(err, result) {
   console.log('Bower directory: ' + result);
 });
 
-mongoose.connect(database.url, function(err){
+mongoose.connect(database.mongoURI[app.settings.env], function(err){
   if(err){
     console.log('Connection error', err);
   } else {

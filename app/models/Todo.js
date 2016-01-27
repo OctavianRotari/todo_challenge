@@ -7,4 +7,4 @@ var TodoSchema = new Schema({
   updated_at: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model('Todo', TodoSchema);
+module.exports = mongoose.model('todo', TodoSchema);
