@@ -15,8 +15,8 @@ describe('Todo', function(){
 
   beforeEach(function(done){
     var newTodo = new Todo({
-      name: 'Bat',
-      note: 'man',
+      name: 'Play ping pong',
+      note: 'maybe',
       completed: false
     });
 
@@ -42,8 +42,8 @@ describe('Todo', function(){
       res.body[0].should.have.property('name');
       res.body[0].should.have.property('note');
       res.body[0].should.have.property('completed');
-      res.body[0].name.should.equal('Bat');
-      res.body[0].note.should.equal('man');
+      res.body[0].name.should.equal('Play ping pong');
+      res.body[0].note.should.equal('maybe');
       res.body[0].completed.should.equal(false);
       done();
     });
