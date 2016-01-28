@@ -1,0 +1,29 @@
+
+[0m[0m
+[0m  Todo[0m
+Bower directory: /Users/octavianrotari/Projects/todo_challenge/libs
+Connection successful
+[0mGET /todos [32m200 [0m16.404 ms - 141[0m
+[2K[0G  [32m  ✓[0m[90m should list ALL todos on /todos GET[0m[33m (49ms)[0m
+[0mGET /todos/56aa062cb7153fc84edb3ada [32m200 [0m10.810 ms - 140[0m
+[2K[0G  [32m  ✓[0m[90m should list a SINGLE todo on /todos/<id> GET[0m
+[0mPOST /todos [32m200 [0m16.947 ms - 130[0m
+[2K[0G  [32m  ✓[0m[90m should add a SINGLE todo on /todos POST[0m
+[2K[0G  [32m  ✓[0m[90m should update a SINGLE todo on /todo/<id> PUT[0m
+[0mGET /todos [32m200 [0m2.378 ms - 2[0m
+[2K[0G  [31m  1) "before each" hook[0m
+
+
+[92m [0m[32m 4 passing[0m[90m (352ms)[0m
+[31m  1 failing[0m
+
+[0m  1) Todo "before each" hook:
+[0m[31m     Uncaught TypeError: Cannot read property '_id' of undefined[0m[90m
+      at test/todo-server.js:97:35
+      at Test.Request.callback (node_modules/superagent/lib/node/index.js:746:30)
+      at Test.<anonymous> (node_modules/superagent/lib/node/index.js:135:10)
+      at IncomingMessage.<anonymous> (node_modules/superagent/lib/node/index.js:923:12)
+      at endReadableNT (_stream_readable.js:906:12)
+[0m
+
+

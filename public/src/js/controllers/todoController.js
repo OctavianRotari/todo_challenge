@@ -7,13 +7,13 @@ app.controller('TodoController', ['$scope', 'Todos', '$location', function ($sco
     if(!$scope.newTodo.todo || $scope.newTodo.todo.length < 1){
       console.log('Fill in with todo');
       return;
-    } else {;
+    } else {
     var todo = new Todos({name:$scope.newTodo.todo, completed:false, note:$scope.newTodo.note});
     todo.$save(function(){
       $scope.todos.push(todo);
       $scope.newTodo = {todo: null, note: null};
     });
-    };
+    }
   };
 
   $scope.edit = function(index){

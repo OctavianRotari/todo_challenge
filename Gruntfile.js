@@ -11,7 +11,7 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      all: ['public/src/javascripts/**/*.js']
+      all: ['public/src/js/**/*.js']
     },
 
     uglify: {
@@ -39,6 +39,16 @@ module.exports = function(grunt) {
         logConcurrentOutput: true
       },
       tasks: ['nodemon', 'watch']
+    },
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+          quiet: false, // Optionally suppress output to standard out (defaults to false)
+          clearRequireCache: false // Optionally clear the require cache before running tests (defaults to false)
+        },
+        src: ['test/*.js']
+      }
     }
   });
 
@@ -49,8 +59,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
-
+  grunt.loadNpmTasks('grunt-mocha-test');
+  
   // register the nodemon task when we run grunt
-grunt.registerTask('default', ['cssmin', 'jshint', 'uglify', 'concurrent']);
+grunt.registerTask('default', ['cssmin', 'jshint', 'uglify', 'concurrent', 'mochaTest' ]);
+
+grunt.registerTask('test', [ 'jshint',  'mochaTest']);
 
 };
