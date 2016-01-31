@@ -1,4 +1,4 @@
-app.controller('TodoController', ['$scope', 'Todos', '$location', function ($scope, Todos, $location) {
+app.controller('TodoController', ['$scope', 'Todos', function ($scope, Todos) {
   $scope.newTodo = {todo: null, note: null};
   $scope.editing = [];
   $scope.todos = Todos.query();
