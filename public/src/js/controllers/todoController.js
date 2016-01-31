@@ -5,8 +5,7 @@ app.controller('TodoController', ['$scope', 'Todos', function ($scope, Todos) {
 
   $scope.save = function(){
     if(!$scope.newTodo.todo || $scope.newTodo.todo.length < 1){
-      console.log('Fill in with todo');
-      return;
+      throw 'Fill in with todo';
     } else {
     var todo = new Todos({name:$scope.newTodo.todo, completed:false, note:$scope.newTodo.note});
     todo.$save(function(){
