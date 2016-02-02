@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var routes = require('./app/routes/index');
 var todos = require('./app/routes/todos');
 var bowerDirectory = require('bower-directory');
-var database = require('./config/database');
+var database = require('config/database');
 var app = express();
 
 var mongoose = require ('mongoose');

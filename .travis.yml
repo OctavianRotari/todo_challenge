@@ -2,9 +2,12 @@ language: node_js
 
 node_js:
     - "5.4.1"
-
+services:
+  - mongodb
+    
 script: node_modules/karma/bin/karma start test/karma.conf.js --single-run
 
 before_script:
+    - mongo mydb_test --eval 'db.addUser("travis", "test");'
     - npm install
     - bower install
